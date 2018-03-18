@@ -1,0 +1,15 @@
+<% if notice.present? %>
+  <div class="callout primary" data-closable>
+    <p><%= notice %></p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% elsif alert.present? %>
+  <div class="callout alert" data-closable>
+    <p class="alert"><%= alert %></p>
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
