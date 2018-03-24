@@ -1,19 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="grid-x">
+  <div class="cell medium-6 medium-offset-3">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>School:</strong>
-  <%= @room.school %>
-</p>
+    <p>
+      <strong>Name:</strong>
+      <%= @room.name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @room.name %>
-</p>
+    <p>
+      <strong>Slug:</strong>
+      <%= @room.slug %>
+    </p>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @room.slug %>
-</p>
-
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+    <%= link_to 'Edit', edit_school_room_path(@school, @room) %> |
+    <%= link_to 'Back', school_rooms_path %>
+  </div>
+</div>

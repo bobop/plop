@@ -1,7 +1,17 @@
 <div class="top-bar">
   <div class="top-bar-left">
-    <ul class="menu">
+    <ul class="dropdown menu" data-dropdown-menu>
       <li class="menu-text">PLOP</li>
+      <% if @school.present? %>
+        <li class="has-submenu">
+          <a href="#0"><%= @school.name %></a>
+          <ul class="submenu menu vertical" data-submenu>
+            <li><%= link_to "Divisions", school_divisions_path(@school) %></a></li>
+            <li><%= link_to "Grades", school_grades_path(@school) %></li>
+            <li><%= link_to "Rooms", school_rooms_path(@school) %></li>
+          </ul>
+        </li>
+      <% end %>
     </ul>
   </div>
   <div class="top-bar-right">

@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="grid-x">
+  <div class="cell medium-6 medium-offset-3">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>School:</strong>
-  <%= @grade.school %>
-</p>
+    <p>
+      <strong>School:</strong>
+      <%= @grade.school %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @grade.name %>
-</p>
+    <p>
+      <strong>Name:</strong>
+      <%= @grade.name %>
+    </p>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @grade.slug %>
-</p>
+    <p>
+      <strong>Slug:</strong>
+      <%= @grade.slug %>
+    </p>
 
-<%= link_to 'Edit', edit_grade_path(@grade) %> |
-<%= link_to 'Back', grades_path %>
+    <%= link_to 'Edit', edit_school_grade_path(@grade) %> |
+    <%= link_to 'Back', school_grades_path %>
+  </div>
+</div>

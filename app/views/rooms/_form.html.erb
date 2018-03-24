@@ -1,4 +1,4 @@
-<%= form_with(model: room, local: true) do |form| %>
+<%= form_with(model: [@school, room], local: true) do |form| %>
   <% if room.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
@@ -11,10 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :school_id %>
-    <%= form.text_field :school_id, id: :room_school_id %>
-  </div>
+  <%= form.hidden_field :school_id, id: :room_school_id, value: @school.id %>
 
   <div class="field">
     <%= form.label :name %>
@@ -27,6 +24,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "button" %>
   </div>
 <% end %>

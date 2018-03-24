@@ -1,10 +1,11 @@
 class RoomsController < ApplicationController
+  before_action :set_school
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
+    @rooms = @school.rooms
   end
 
   # GET /rooms/1
@@ -28,7 +29,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.html { redirect_to school_room_path(@school, @room), notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
+        format.html { redirect_to school_rooms_path(@school, @room), notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class RoomsController < ApplicationController
   def destroy
     @room.destroy
     respond_to do |format|
-      format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
+      format.html { redirect_to school_rooms_path(@school, @room), notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +65,7 @@ class RoomsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room
-      @room = Room.find(params[:id])
+      @room = @school.rooms.find_by_slug(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

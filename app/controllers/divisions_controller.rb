@@ -5,7 +5,7 @@ class DivisionsController < ApplicationController
   # GET /divisions
   # GET /divisions.json
   def index
-    @divisions = Division.all
+    @divisions = @school.divisions
   end
 
   # GET /divisions/1
@@ -57,17 +57,13 @@ class DivisionsController < ApplicationController
   def destroy
     @division.destroy
     respond_to do |format|
-      format.html { redirect_to school_division_path(@school, @division), notice: 'Division was successfully destroyed.' }
+      format.html { redirect_to school_divisions_path(@school, @division), notice: 'Division was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_school
-      @school = School.find_by_slug(params[:school_id])
-    end
-
     def set_division
       @division = @school.divisions.find_by_slug(params[:id])
     end

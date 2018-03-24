@@ -1,6 +1,10 @@
-<h1>Editing Grade</h1>
+<div class="grid-x">
+  <div class="cell medium-6 medium-offset-3">
+    <h1>Editing Grade</h1>
 
-<%= render 'form', grade: @grade %>
+    <%= render 'form', grade: @grade %>
 
-<%= link_to 'Show', @grade %> |
-<%= link_to 'Back', grades_path %>
+    <%= link_to 'Show', school_grade_path(@school, @grade) %> |
+    <%= link_to 'Back', school_grades_path %>
+  </div>
+</div>
