@@ -6,7 +6,7 @@ class SchoolPolicy < ApplicationPolicy
   end
 
   def index?
-    @user.present? && @user.admin?
+    @user.admin?
   end
 
   def show?
@@ -14,7 +14,7 @@ class SchoolPolicy < ApplicationPolicy
   end
 
   def create?
-    @user.present? && @user.admin?
+    @user.admin?
   end
 
   def new?
@@ -22,7 +22,7 @@ class SchoolPolicy < ApplicationPolicy
   end
 
   def update?
-    @user.present? && @user.admin?
+    @user.admin?
   end
 
   def edit?
@@ -30,6 +30,6 @@ class SchoolPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user.present? && @user.admin?
+    @user.admin?
   end
 end

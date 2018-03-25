@@ -2,7 +2,17 @@
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
       <li class="menu-text">PLOP</li>
-      <% if @school.present? && @school.persisted? && current_user.present? && current_user.role != 'parent' %>
+      <% if current_user.present? && current_user.role == 'coordinator' %>
+        <li class="has-submenu">
+          <%= link_to current_user.school.name, school_path(current_user.school) %>
+          <ul class="submenu menu vertical" data-submenu>
+            <li><%= link_to "Divisions", school_divisions_path(current_user.school) %></a></li>
+            <li><%= link_to "Grades", school_grades_path(current_user.school) %></li>
+            <li><%= link_to "Rooms", school_rooms_path(current_user.school) %></li>
+          </ul>
+        </li>
+      <% end %>
+      <% if current_user.present? && current_user.role == 'admin' && @school.present? %>
         <li class="has-submenu">
           <%= link_to @school.name, school_path(@school) %>
           <ul class="submenu menu vertical" data-submenu>

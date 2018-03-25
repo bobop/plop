@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   get 'schools', to: 'schools#index'
   
-  resources :schools, path: '' do
+  resources :schools do
     resources :rooms
     resources :grades
     resources :divisions

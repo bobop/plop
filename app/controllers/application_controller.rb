@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
   
     def set_school
       @school = School.find_by_slug(params[:school_id])
-      @school = current_user.school if @school.blank? && current_user.present?
     end
 
     def user_not_authorized
