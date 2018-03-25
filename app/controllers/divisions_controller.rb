@@ -1,10 +1,12 @@
 class DivisionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_school
   before_action :set_division, only: [:show, :edit, :update, :destroy]
 
   # GET /divisions
   # GET /divisions.json
   def index
+    authorize Division
     @divisions = @school.divisions
   end
 
@@ -16,6 +18,7 @@ class DivisionsController < ApplicationController
   # GET /divisions/new
   def new
     @division = Division.new
+    authorize @division
   end
 
   # GET /divisions/1/edit
@@ -26,6 +29,7 @@ class DivisionsController < ApplicationController
   # POST /divisions.json
   def create
     @division = Division.new(division_params)
+    authorize @division
 
     respond_to do |format|
       if @division.save
@@ -66,6 +70,7 @@ class DivisionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_division
       @division = @school.divisions.find_by_slug(params[:id])
+      authorize @division
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -2,9 +2,9 @@
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
       <li class="menu-text">PLOP</li>
-      <% if @school.present? %>
+      <% if @school.present? && @school.persisted? && current_user.present? && current_user.role != 'parent' %>
         <li class="has-submenu">
-          <a href="#0"><%= @school.name %></a>
+          <%= link_to @school.name, school_path(@school) %>
           <ul class="submenu menu vertical" data-submenu>
             <li><%= link_to "Divisions", school_divisions_path(@school) %></a></li>
             <li><%= link_to "Grades", school_grades_path(@school) %></li>
@@ -17,6 +17,7 @@
   <div class="top-bar-right">
     <ul class="menu">
       <% if current_user %>
+        <li><%= current_user.email %></li>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Sign up", new_user_registration_path %></li>

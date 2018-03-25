@@ -1,10 +1,12 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   before_action :set_school
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   # GET /rooms
   # GET /rooms.json
   def index
+    authorize Room
     @rooms = @school.rooms
   end
 
@@ -16,6 +18,7 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+    authorize @room
   end
 
   # GET /rooms/1/edit
@@ -26,6 +29,7 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
+    authorize @room
 
     respond_to do |format|
       if @room.save
@@ -66,6 +70,7 @@ class RoomsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_room
       @room = @school.rooms.find_by_slug(params[:id])
+      authorize @room
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

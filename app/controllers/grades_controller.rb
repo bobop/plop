@@ -1,10 +1,12 @@
 class GradesController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   before_action :set_school
   before_action :set_grade, only: [:show, :edit, :update, :destroy]
 
   # GET /grades
   # GET /grades.json
   def index
+    authorize Grade
     @grades = @school.grades
   end
 
@@ -16,6 +18,7 @@ class GradesController < ApplicationController
   # GET /grades/new
   def new
     @grade = Grade.new
+    authorize @grade
   end
 
   # GET /grades/1/edit
@@ -26,6 +29,7 @@ class GradesController < ApplicationController
   # POST /grades.json
   def create
     @grade = Grade.new(grade_params)
+    authorize @grade
 
     respond_to do |format|
       if @grade.save
@@ -66,6 +70,7 @@ class GradesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_grade
       @grade = @school.grades.find_by_slug(params[:id])
+      authorize @grade
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

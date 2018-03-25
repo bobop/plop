@@ -1,9 +1,11 @@
 class SchoolsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   before_action :set_school, only: [:show, :edit, :update, :destroy]
 
   # GET /schools
   # GET /schools.json
   def index
+    authorize School
     @schools = School.all
   end
 
@@ -15,6 +17,7 @@ class SchoolsController < ApplicationController
   # GET /schools/new
   def new
     @school = School.new
+    authorize @school
   end
 
   # GET /schools/1/edit
@@ -25,6 +28,7 @@ class SchoolsController < ApplicationController
   # POST /schools.json
   def create
     @school = School.new(school_params)
+    authorize @school
 
     respond_to do |format|
       if @school.save
@@ -65,6 +69,7 @@ class SchoolsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_school
       @school = School.find_by_slug(params[:id])
+      authorize @school
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
