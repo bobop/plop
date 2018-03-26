@@ -1,0 +1,43 @@
+<div class="grid-x">
+  <div class="cell medium-6 medium-offset-3">
+    <p id="notice"><%= notice %></p>
+
+    <p>
+      <strong>First name:</strong>
+      <%= @child.first_name %>
+    </p>
+
+    <p>
+      <strong>Last name:</strong>
+      <%= @child.last_name %>
+    </p>
+
+    <p>
+      <strong>Division:</strong>
+      <%= @child.division.try(:name) %>
+    </p>
+
+    <p>
+      <strong>Grade:</strong>
+      <%= @child.grade.try(:name) %>
+    </p>
+
+    <p>
+      <strong>Room:</strong>
+      <%= @child.room.try(:name) %>
+    </p>
+
+    <p>
+      <strong>Allergies:</strong>
+      <%= @child.allergies %>
+    </p>
+
+    <p>
+      <strong>Dietry requirements:</strong>
+      <%= @child.dietry_requirements %>
+    </p>
+
+    <%= link_to 'Edit', edit_child_path(@child) %> |
+    <%= link_to 'Back', children_path %>
+  </div>
+</div>

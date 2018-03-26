@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  school: one
+  first_name: MyString
+  last_name: MyString
+  division: one
+  grade: one
+  room: one
+  allergies: MyText
+  dietry_requirements: MyText
+
+two:
+  user: two
+  school: two
+  first_name: MyString
+  last_name: MyString
+  division: two
+  grade: two
+  room: two
+  allergies: MyText
+  dietry_requirements: MyText

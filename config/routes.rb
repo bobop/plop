@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :children
   root to: "home#index"
   get 'schools', to: 'schools#index'
   

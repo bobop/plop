@@ -22,6 +22,14 @@
           </ul>
         </li>
       <% end %>
+      <% if current_user.present? && current_user.role == 'parent' %>
+        <li class="has-submenu">
+          <%= link_to @school.name, school_path(@school) %>
+          <ul class="submenu menu vertical" data-submenu>
+            <li><%= link_to "My Children", children_path %></a></li>
+          </ul>
+        </li>
+      <% end %>
     </ul>
   </div>
   <div class="top-bar-right">

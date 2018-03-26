@@ -18,11 +18,15 @@ class ApplicationController < ActionController::Base
   private
   
     def set_school
-      @school = School.find_by_slug(params[:school_id])
+      if current_user.present?
+        @school = current_user.school if !current_user.admin?
+        raise Pundit::NotAuthorizedError if params[:school_id].present? && current_user.school.slug != params[:school_id]
+      end
+      @school = School.find_by_slug(params[:school_id]) unless @school.present?
     end
 
     def user_not_authorized
-      # raise ActiveRecord::RecordNotFound
-      render file: "#{Rails.root}/public/404.html", status: 404
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to(request.referrer || root_path)
     end
 end

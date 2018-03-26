@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325020841) do
+ActiveRecord::Schema.define(version: 20180326021130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "children", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "school_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.bigint "division_id"
+    t.bigint "grade_id"
+    t.bigint "room_id"
+    t.text "allergies"
+    t.text "dietry_requirements"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["division_id"], name: "index_children_on_division_id"
+    t.index ["grade_id"], name: "index_children_on_grade_id"
+    t.index ["room_id"], name: "index_children_on_room_id"
+    t.index ["school_id"], name: "index_children_on_school_id"
+    t.index ["user_id"], name: "index_children_on_user_id"
+  end
 
   create_table "divisions", force: :cascade do |t|
     t.bigint "school_id"
@@ -74,6 +93,11 @@ ActiveRecord::Schema.define(version: 20180325020841) do
     t.index ["school_id"], name: "index_users_on_school_id"
   end
 
+  add_foreign_key "children", "divisions"
+  add_foreign_key "children", "grades"
+  add_foreign_key "children", "rooms"
+  add_foreign_key "children", "schools"
+  add_foreign_key "children", "users"
   add_foreign_key "divisions", "schools"
   add_foreign_key "grades", "schools"
   add_foreign_key "rooms", "schools"

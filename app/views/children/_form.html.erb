@@ -1,0 +1,52 @@
+<%= form_with(model: child, local: true) do |form| %>
+  <% if child.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(child.errors.count, "error") %> prohibited this child from being saved:</h2>
+
+      <ul>
+      <% child.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, id: :child_first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, id: :child_last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :division_id %>
+    <%= form.collection_select :division_id, @school.divisions, :id, :name, id: :child_division_id, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :grade_id %>
+    <%= form.collection_select :grade_id, @school.grades, :id, :name, id: :child_grade_id, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :room_id %>
+    <%= form.collection_select :room_id, @school.rooms, :id, :name, id: :child_room_id, prompt: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :allergies %>
+    <%= form.text_area :allergies, id: :child_allergies %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dietry_requirements %>
+    <%= form.text_area :dietry_requirements, id: :child_dietry_requirements %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "button" %>
+  </div>
+<% end %>
