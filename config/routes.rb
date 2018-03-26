@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :rooms
     resources :grades
     resources :divisions
+    resources :children, only: [:index, :show]
   end
   
   devise_for :users

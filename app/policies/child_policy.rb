@@ -6,11 +6,11 @@ class ChildPolicy < ApplicationPolicy
   end
 
   def index?
-    @user.parent?
+    @user.present?
   end
 
   def show?
-    @user.children.include?(@record)
+    @user.admin? || @user.children.include?(@record)
   end
 
   def create?

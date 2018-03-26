@@ -11,16 +11,16 @@ class ApplicationController < ActionController::Base
       when 'parent', 'coordinator'
         school_path(resource.school)
       when 'admin'
-        root_path
+        schools_path
       end
     end
 
   private
   
     def set_school
-      if current_user.present?
-        @school = current_user.school if !current_user.admin?
-        raise Pundit::NotAuthorizedError if params[:school_id].present? && current_user.school.slug != params[:school_id]
+      if current_user.present? && !current_user.admin?
+        @school = current_user.school
+        raise Pundit::NotAuthorizedError if params[:school_id].present? && @school.slug != params[:school_id]
       end
       @school = School.find_by_slug(params[:school_id]) unless @school.present?
     end

@@ -1,4 +1,5 @@
 class ChildrenController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_school
   before_action :set_child, only: [:show, :edit, :update, :destroy]
 
@@ -7,6 +8,7 @@ class ChildrenController < ApplicationController
   def index
     authorize Child
     @children = current_user.children
+    @children = @school.children if current_user.admin?
   end
 
   # GET /children/1
