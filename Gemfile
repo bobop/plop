@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'foundation-rails', '6.4.3'
+gem 'webpacker', '~> 3.4'
 gem 'autoprefixer-rails'
 
 gem 'devise'
