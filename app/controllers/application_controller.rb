@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   protect_from_forgery with: :exception
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   # after_action :verify_authorized
 
@@ -13,6 +14,10 @@ class ApplicationController < ActionController::Base
       when 'admin'
         schools_path
       end
+    end
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:school_id])
     end
 
   private

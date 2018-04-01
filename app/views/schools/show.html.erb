@@ -1,38 +1,63 @@
 <div class="grid-x">
-  <div class="cell medium-6 medium-offset-3">
+  <div class="cell medium-10 medium-offset-1">
     <p id="notice"><%= notice %></p>
+    <h1><%= @school.name %></h1>
+    <div class="grid-x grid-margin-x">
+      <div class="cell medium-6">
+        <% unless current_user.present? %>
+          <h3>Sign In</h3>
+          <%= render 'devise/sessions/new_session' %>
+          <h3>Sign Up</h3>
+          <%= link_to "Sign Up to PLOP for #{@school.name} here", new_user_registration_path(school: @school.id), class: "button secondary" %>
+        <% else %>
+          <h3>Upcoming Lunches</h3>
+          <h3>Your Children</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
 
-    <p>
-      <strong>Name:</strong>
-      <%= @school.name %>
-    </p>
+            <tbody>
+              <% current_user.children.each do |child| %>
+                <tr>
+                  <td><%= child.first_name %></td>
+                  <td><%= child.last_name %></td>
+                  <td><%= link_to 'Show', child %></td>
+                  <td><%= link_to 'Edit', edit_child_path(child) %></td>
+                  <td><%= link_to 'Destroy', child, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+      <div class="cell medium-6">
+        <div class="callout secondary">
+          <h5>School Details</h5>
+          <p>
+            <strong>Address:</strong>
+            <%= @school.address %>
+          </p>
 
-    <p>
-      <strong>Address:</strong>
-      <%= @school.address %>
-    </p>
+          <p>
+            <strong>Contact name:</strong>
+            <%= @school.contact_name %>
+          </p>
 
-    <p>
-      <strong>Contact name:</strong>
-      <%= @school.contact_name %>
-    </p>
+          <p>
+            <strong>Contact phone:</strong>
+            <%= @school.contact_phone %>
+          </p>
 
-    <p>
-      <strong>Contact phone:</strong>
-      <%= @school.contact_phone %>
-    </p>
-
-    <p>
-      <strong>Contact email:</strong>
-      <%= @school.contact_email %>
-    </p>
-
-    <p>
-      <strong>Slug:</strong>
-      <%= @school.slug %>
-    </p>
-
-    <%= link_to 'Edit', edit_school_path(@school) %> |
-    <%= link_to 'Back', schools_path %>
+          <p>
+            <strong>Contact email:</strong>
+            <%= @school.contact_email %>
+          </p>
+      </div>
+    </div>
   </div>
 </div>
