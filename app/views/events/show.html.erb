@@ -1,0 +1,26 @@
+<div class="grid-x">
+  <div class="cell medium-6 medium-offset-3">
+    <p>
+      <strong>Name:</strong>
+      <%= @event.name %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @event.description %>
+    </p>
+
+    <p>
+      <strong>Start at:</strong>
+      <%= @event.start_at %>
+    </p>
+
+    <p>
+      <strong>Slug:</strong>
+      <%= @event.slug %>
+    </p>
+
+    <%= link_to 'Edit', edit_school_program_event_path(@event) %> |
+    <%= link_to 'Back', school_program_events_path %>
+  </div>
+</div>

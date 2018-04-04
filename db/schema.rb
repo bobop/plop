@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326021130) do
+ActiveRecord::Schema.define(version: 20180404022517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 20180326021130) do
     t.index ["school_id"], name: "index_divisions_on_school_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.bigint "program_id"
+    t.string "name"
+    t.text "description"
+    t.datetime "start_at"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["program_id"], name: "index_events_on_program_id"
+  end
+
   create_table "grades", force: :cascade do |t|
     t.bigint "school_id"
     t.string "name"
@@ -50,6 +61,16 @@ ActiveRecord::Schema.define(version: 20180326021130) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_grades_on_school_id"
+  end
+
+  create_table "programs", force: :cascade do |t|
+    t.bigint "school_id"
+    t.string "name"
+    t.text "description"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_programs_on_school_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -99,7 +120,9 @@ ActiveRecord::Schema.define(version: 20180326021130) do
   add_foreign_key "children", "schools"
   add_foreign_key "children", "users"
   add_foreign_key "divisions", "schools"
+  add_foreign_key "events", "programs"
   add_foreign_key "grades", "schools"
+  add_foreign_key "programs", "schools"
   add_foreign_key "rooms", "schools"
   add_foreign_key "users", "schools"
 end

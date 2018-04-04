@@ -1,0 +1,39 @@
+<div class="grid-x">
+  <div class="cell medium-10 medium-offset-1">
+
+    <h1>Programs</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Events</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @programs.each do |program| %>
+          <tr>
+            <td><%= program.name %></td>
+            <td><%= program.description %></td>
+            <td>
+              <% program.events.each do |event| %>
+                <%= link_to event.name, school_program_event_path(@school, program, event) %></br>
+              <% end %>
+              <%= link_to 'Manage these Events', school_program_events_path(@school, program), class: "button secondary tiny" %>
+            </td>
+            <td><%= link_to 'Show', school_program_path(@school, program) %></td>
+            <td><%= link_to 'Edit', edit_school_program_path(@school, program) %></td>
+            <td><%= link_to 'Destroy', school_program_path(@school, program), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Program', new_school_program_path %>
+  </div>
+</div>

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :grades
     resources :divisions
     resources :children, only: [:index, :show]
+    resources :programs do
+      resources :events
+    end
   end
   
   devise_for :users

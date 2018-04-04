@@ -1,4 +1,29 @@
-<h3>Upcoming Lunches</h3>
+<h3>Upcoming Events</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Date</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @school.events.in_the_future.order("start_at ASC").each do |event| %>
+      <tr>
+        <td>
+          <h3>
+            <%= event.name %></br>
+            <small><%= event.program.name %></small>
+          </h3>
+        </td>
+        <td><%= event.start_at.to_s(:short) %></td>
+        <td><%= link_to 'Show', school_program_event_path(@school, event.program, event) %></td>
+        <td><%= link_to 'Order', '#' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <h3>Your Children</h3>
 <table>
   <thead>

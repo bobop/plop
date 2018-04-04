@@ -1,0 +1,10 @@
+<div class="grid-x">
+  <div class="cell medium-6 medium-offset-3">
+    <h1>Editing Program</h1>
+
+    <%= render 'form', program: @program %>
+
+    <%= link_to 'Show', school_program_path(@school, @program) %> |
+    <%= link_to 'Back', school_programs_path %>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<%= form_with(model: [@school, program], local: true) do |form| %>
+  <% if program.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(program.errors.count, "error") %> prohibited this program from being saved:</h2>
+
+      <ul>
+      <% program.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :school_id, id: :program_school_id, value: @school.id %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :program_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :program_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :slug %>
+    <%= form.text_field :slug, id: :program_slug %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "button" %>
+  </div>
+<% end %>
