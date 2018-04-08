@@ -12,10 +12,10 @@
     <% @school.events.in_the_future.order("start_at ASC").each do |event| %>
       <tr>
         <td>
-          <h3>
+          <h6>
             <%= event.name %></br>
             <small><%= event.program.name %></small>
-          </h3>
+          </h6>
         </td>
         <td><%= event.start_at.to_s(:short) %></td>
         <td><%= link_to 'Show', school_program_event_path(@school, event.program, event) %></td>

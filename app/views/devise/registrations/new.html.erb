@@ -1,6 +1,6 @@
 <div class="grid-x">
   <div class="cell medium-6 medium-offset-3">
-    <% if School.find_by(id: params[:school]).present? %>
+
       <h2>Sign up</h2>
       <p>Sign Up here to create your <%= School.find(params[:school]).name %> account.</p>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -32,8 +32,6 @@
       <% end %>
 
       <%= render "devise/shared/links" %>
-    <% else %>
-      <h4>Please contact your Fun Lunch Coordinator for the web address for your children's school on PLOP</h4>
-    <% end %>
+
   </div>
 </div>

@@ -17,6 +17,10 @@ school = School.create(
   name: 'Norgate'
 )
 
+school_2 = School.create(
+  name: 'Capilano'
+)
+
 User.create(
   email: ENV['COORDINATOR_EMAIL'],
   password: ENV['COORDINATOR_PASSWORD'],
