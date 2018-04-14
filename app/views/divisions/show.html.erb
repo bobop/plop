@@ -1,16 +1,12 @@
-<div class="grid-x">
-  <div class="cell medium-6 medium-offset-3">
-    <p>
-      <strong>Name:</strong>
-      <%= @division.name %>
-    </p>
+<p>
+  <strong>Name:</strong>
+  <%= @division.name %>
+</p>
 
-    <p>
-      <strong>Slug:</strong>
-      <%= @division.slug %>
-    </p>
+<p>
+  <strong>Slug:</strong>
+  <%= @division.slug %>
+</p>
 
-    <%= link_to 'Edit', edit_school_division_path(@school, @division) %> |
-    <%= link_to 'Back', school_divisions_path %>
-  </div>
-</div>
+<%= link_to 'Edit', edit_school_division_path(@school, @division) %> |
+<%= link_to 'Back', school_divisions_path %>

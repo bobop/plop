@@ -1,10 +1,6 @@
-<div class="grid-x">
-  <div class="cell medium-6 medium-offset-3">
-    <h1>Editing Division</h1>
+<h1>Editing Division</h1>
 
-    <%= render 'form', division: @division %>
+<%= render 'form', division: @division %>
 
-    <%= link_to 'Show', school_division_path(@school, @division) %> |
-    <%= link_to 'Back', school_divisions_path %>
-  </div>
-</div>
+<%= link_to 'Show', school_division_path(@school, @division) %> |
+<%= link_to 'Back', school_divisions_path %>

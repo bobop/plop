@@ -15,7 +15,7 @@
     <%= render 'layouts/alerts' %>
     <div class="grid-x">
       <div class="cell">
-        <% if action_name == 'index' %>
+        <% if action_name == 'index' || controller_name == 'schools' %>
           <div class="grid-x">
             <div class="cell medium-10 medium-offset-1">
               <%= yield %>

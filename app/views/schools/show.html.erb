@@ -1,43 +1,38 @@
-<div class="grid-x">
-  <div class="cell medium-10 medium-offset-1">
-    <p id="notice"><%= notice %></p>
-    <h1><%= @school.name %></h1>
-    <div class="grid-x grid-margin-x">
-      <div class="cell medium-6">
-        <% unless current_user.present? %>
-          <h3>Sign In</h3>
-          <%= render 'devise/sessions/new_session' %>
-          <h3>Sign Up</h3>
-          <%= link_to "Sign Up to PLOP for #{@school.name} here", new_user_registration_path(school: @school.id), class: "button secondary" %>
-        <% else %>
-          <%= render 'admin_view' if current_user.admin? %>
-          <%= render 'coordinator_view' if current_user.coordinator? %>
-          <%= render 'parent_view' if current_user.parent? %>
-        <% end %>
-      </div>
-      <div class="cell medium-6">
-        <div class="callout secondary">
-          <h5>School Details</h5>
-          <p>
-            <strong>Address:</strong>
-            <%= @school.address %>
-          </p>
+<h1><%= @school.name %></h1>
+<div class="grid-x grid-margin-x">
+  <div class="cell medium-6">
+    <% unless current_user.present? %>
+      <h3>Sign In</h3>
+      <%= render 'devise/sessions/new_session' %>
+      <h3>Sign Up</h3>
+      <%= link_to "Sign Up to PLOP for #{@school.name} here", new_user_registration_path(school: @school.id), class: "button secondary" %>
+    <% else %>
+      <%= render 'admin_view' if current_user.admin? %>
+      <%= render 'coordinator_view' if current_user.coordinator? %>
+      <%= render 'parent_view' if current_user.parent? %>
+    <% end %>
+  </div>
+  <div class="cell medium-6">
+    <div class="callout secondary">
+      <h5>School Details</h5>
+      <p>
+        <strong>Address:</strong>
+        <%= @school.address %>
+      </p>
 
-          <p>
-            <strong>Contact name:</strong>
-            <%= @school.contact_name %>
-          </p>
+      <p>
+        <strong>Contact name:</strong>
+        <%= @school.contact_name %>
+      </p>
 
-          <p>
-            <strong>Contact phone:</strong>
-            <%= @school.contact_phone %>
-          </p>
+      <p>
+        <strong>Contact phone:</strong>
+        <%= @school.contact_phone %>
+      </p>
 
-          <p>
-            <strong>Contact email:</strong>
-            <%= @school.contact_email %>
-          </p>
-      </div>
-    </div>
+      <p>
+        <strong>Contact email:</strong>
+        <%= @school.contact_email %>
+      </p>
   </div>
 </div>

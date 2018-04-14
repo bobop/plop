@@ -1,32 +1,27 @@
-<div class="grid-x">
-  <div class="cell medium-10 medium-offset-1">
+<h1>Divisions</h1>
 
-    <h1>Divisions</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Slug</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Slug</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
+  <tbody>
+    <% @divisions.each do |division| %>
+      <tr>
+        <td><%= division.name %></td>
+        <td><%= division.slug %></td>
+        <td><%= link_to 'Show', school_division_path(@school, division) %></td>
+        <td><%= link_to 'Edit', edit_school_division_path(@school, division) %></td>
+        <td><%= link_to 'Destroy', school_division_path(@school, division), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-      <tbody>
-        <% @divisions.each do |division| %>
-          <tr>
-            <td><%= division.name %></td>
-            <td><%= division.slug %></td>
-            <td><%= link_to 'Show', school_division_path(@school, division) %></td>
-            <td><%= link_to 'Edit', edit_school_division_path(@school, division) %></td>
-            <td><%= link_to 'Destroy', school_division_path(@school, division), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<br>
 
-    <br>
-
-    <%= link_to 'New Division', new_school_division_path %>
-  </div>
-</div>
+<%= link_to 'New Division', new_school_division_path %>
