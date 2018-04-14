@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :programs do
       resources :events
     end
+    resources :products
+    resources :product_categories
+    resources :suppliers
   end
   
   devise_for :users

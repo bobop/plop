@@ -14,7 +14,21 @@
     <%= render 'layouts/head_nav' %>
     <%= render 'layouts/alerts' %>
     <div class="grid-x">
-      <div class="cell"><%= yield %></div>
+      <div class="cell">
+        <% if action_name == 'index' %>
+          <div class="grid-x">
+            <div class="cell medium-10 medium-offset-1">
+              <%= yield %>
+            </div>
+          </div>
+        <% else %>
+          <div class="grid-x">
+            <div class="cell medium-6 medium-offset-3">
+              <%= yield %>
+            </div>
+          </div>
+        <% end %>  
+      </div>
     </div>
   </body>
 </html>

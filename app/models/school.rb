@@ -5,6 +5,9 @@ class School < ApplicationRecord
   has_many :children
   has_many :programs
   has_many :events, through: :programs
+  has_many :products
+  has_many :product_categories
+  has_many :suppliers
 
   acts_as_url :name, url_attribute: 'slug'
 

@@ -10,6 +10,9 @@
             <li><%= link_to "Grades", school_grades_path(current_user.school) %></li>
             <li><%= link_to "Rooms", school_rooms_path(current_user.school) %></li>
             <li><%= link_to "Programs", school_programs_path(@school) %></li>
+            <li><%= link_to "Products", school_products_path(@school) %></li>
+            <li><%= link_to "Product Categories", school_product_categories_path(@school) %></li>
+            <li><%= link_to "Suppliers", school_suppliers_path(@school) %></li>
           </ul>
         </li>
       <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408043233) do
+ActiveRecord::Schema.define(version: 20180414033127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,32 @@ ActiveRecord::Schema.define(version: 20180408043233) do
     t.index ["school_id"], name: "index_grades_on_school_id"
   end
 
+  create_table "product_categories", force: :cascade do |t|
+    t.bigint "school_id"
+    t.string "name"
+    t.text "description"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_product_categories_on_school_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.bigint "school_id"
+    t.bigint "supplier_id"
+    t.bigint "product_category_id"
+    t.string "name"
+    t.text "description"
+    t.decimal "sale_price", precision: 5, scale: 2
+    t.decimal "cost_price", precision: 5, scale: 2
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_category_id"], name: "index_products_on_product_category_id"
+    t.index ["school_id"], name: "index_products_on_school_id"
+    t.index ["supplier_id"], name: "index_products_on_supplier_id"
+  end
+
   create_table "programs", force: :cascade do |t|
     t.bigint "school_id"
     t.string "name"
@@ -94,6 +120,20 @@ ActiveRecord::Schema.define(version: 20180408043233) do
     t.index ["slug"], name: "index_schools_on_slug", unique: true
   end
 
+  create_table "suppliers", force: :cascade do |t|
+    t.bigint "school_id"
+    t.string "name"
+    t.text "description"
+    t.text "address"
+    t.string "contact_name"
+    t.string "contact_phone"
+    t.string "contact_email"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_suppliers_on_school_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -122,7 +162,12 @@ ActiveRecord::Schema.define(version: 20180408043233) do
   add_foreign_key "divisions", "schools"
   add_foreign_key "events", "programs"
   add_foreign_key "grades", "schools"
+  add_foreign_key "product_categories", "schools"
+  add_foreign_key "products", "product_categories"
+  add_foreign_key "products", "schools"
+  add_foreign_key "products", "suppliers"
   add_foreign_key "programs", "schools"
   add_foreign_key "rooms", "schools"
+  add_foreign_key "suppliers", "schools"
   add_foreign_key "users", "schools"
 end
