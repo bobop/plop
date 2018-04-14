@@ -1,0 +1,17 @@
+<p>
+  <strong>Name:</strong>
+  <%= @product_category.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product_category.description %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @product_category.slug %>
+</p>
+
+<%= link_to 'Edit', edit_school_product_category_path(@school, @product_category) %> |
+<%= link_to 'Back', school_product_categories_path %>

@@ -1,0 +1,29 @@
+<h1>Product Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Slug</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_categories.each do |product_category| %>
+      <tr>
+        <td><%= product_category.name %></td>
+        <td><%= product_category.description %></td>
+        <td><%= product_category.slug %></td>
+        <td><%= link_to 'Show', school_product_category_path(@school, product_category) %></td>
+        <td><%= link_to 'Edit', edit_school_product_category_path(@school, product_category) %></td>
+        <td><%= link_to 'Destroy', school_product_category_path(@school, product_category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product Category', new_school_product_category_path %>

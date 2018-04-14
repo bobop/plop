@@ -1,0 +1,37 @@
+<p>
+  <strong>Supplier:</strong>
+  <%= @product.supplier %>
+</p>
+
+<p>
+  <strong>Product category:</strong>
+  <%= @product.product_category %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Sale price:</strong>
+  <%= @product.sale_price %>
+</p>
+
+<p>
+  <strong>Cost price:</strong>
+  <%= @product.cost_price %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @product.slug %>
+</p>
+
+<%= link_to 'Edit', edit_school_product_path(@school, @product) %> |
+<%= link_to 'Back', school_products_path %>
